@@ -1,0 +1,73 @@
+@import url(https://fonts.google.com/specimen/Inria+Serif?query=Inria);
+@import url(https://fonts.google.com/specimen/Roboto+Slab);
+
+@font-face {
+  font-family: "Inria";
+  src: local("Inria"), 
+    url("./fonts/InriaSerif-Regular.ttf") format("truetype");
+
+  font-family: "InriaBold";
+  src: local("InriaBold"), 
+    url("./fonts/InriaSerif-Bold.ttf") format("truetype");
+
+  font-family: "InriaLight";
+  src: local("InriaLight"), 
+    url("./fonts/InriaSerif-Light.ttf") format("truetype");
+}
+
+fontNormal {
+  font-family: -apple-system, BlinkMacSystemFont, 'Inria Serif';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    height: 1000px;
+    width: 100%;
+    position: fixed;
+    
+     overflow:hidden; 
+}
+
+ol, ul {
+  padding-left: 30px;
+}
+
+.board-row:after {
+  clear: both;
+  content: "";
+  display: table;
+}
+
+.status {
+  margin-bottom: 10px;
+}
+
+.square {
+  background: rgba(255, 255, 255, 0);
+  border: 1px solid rgba(153, 153, 153, 0);
+  float: left;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 34px;
+  height: 34px;
+  margin-right: -1px;
+  margin-top: -1px;
+  padding: 0;
+  text-align: center;
+  width: 34px;
+}
+
+.square:focus {
+  outline: none;
+}
+
+.kbd-navigation .square:focus {
+  background: rgba(255, 255, 255, 00);
+}
+
+.game {
+  display: flex;
+  flex-direction: row;
+}
+
+.game-info {
+  margin-left: 20px;
+}
