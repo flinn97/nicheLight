@@ -22,7 +22,7 @@ class UploadComponent extends Component {
             showPics: false,
             loading:false,
             name: "",
-            type: "monster",
+            type: "",
             delList:[]
 
 
@@ -88,12 +88,12 @@ class UploadComponent extends Component {
     async handleSubmission()  {
         let component = this.props.app.state.currentComponent
         if(this.state.newPics.length===0 && this.state.list.length===0){
-            this.setState({message:"You still need to Spawn something! Upload an image."})
+            this.setState({message:"You still need to create something! Upload an image."})
             return
         }
 
         if(this.state.type="" || this.state.type===undefined) {
-            this.setState({message:"You need a type for your Spawn."})
+            this.setState({message:"You need a type for your content."})
             return
         }
 
@@ -195,7 +195,7 @@ class UploadComponent extends Component {
                     this.props.app.dispatch({ myswitch: "", currentComponent:undefined })
                     } >Cancel</div>
                     <div style={{fontFamily:styles.fonts.fontTitle, color:styles.colors.linkVisitedColor, fontSize:"4vh", marginTop:"",  zIndex:"900"}}>
-                    ~ New Spawn ~
+                    ~ New Content ~
                     </div>
 
                  {/* Title */}
@@ -212,7 +212,7 @@ class UploadComponent extends Component {
                 <ParentFormComponent 
                 inputStyle={{...styles.inputStyle,  width:"42vw", height:"12vh", }}
                 maxLength={1001}
-                placeholder={"Describe your new spawn here. Max 1000 characters."} 
+                placeholder={"Describe your new Content here. Max 1000 characters."} 
                 wrapperStyle={{...styles.wrapperStyle,  }} 
                 labelStyle={{fontFamily: styles.fonts.fontBold, fontSize:"2.1vh", marginBottom:"1vh"}}
                     
@@ -226,12 +226,17 @@ class UploadComponent extends Component {
         type = "select" label="Type: " name="type" 
         defaultValue={(component.getJson().type!==""&&component.getJson().type!==undefined)? component.getJson().type:""} 
         selectOptions={["select", ...state.listItems.filter(word=> word!=="all")]} 
-        textOptions ={["", ...state.listItems.map((word, index)=>{
-            let char = word[0];
-            char = char.toUpperCase();
-            let w = word.slice(1);
-            return char+w;
-        })]} 
+        textOptions ={["", ...state.listItems
+        // ...state.listItems.map((word, index)=>{
+        //     let char = word[0];
+        //     char = char.toUpperCase();
+        //     let w = word.slice(1);
+        //     return char+w;
+        // }
+        // )
+    ]
+    
+    } 
         obj={component}/>
                
 
@@ -272,7 +277,7 @@ class UploadComponent extends Component {
                     labelStyle={{fontFamily: styles.fonts.fontBold, fontSize:"2.1vh", marginBottom:"1vh", color:styles.colors.lightFontColor}} />
 
 
-                    <div style={{...styles.buttons.buttonFollow, height:"5.9vh", marginTop:"2vmax", padding:"2vmin", cursor:"pointer", width:"3.9vmax"}} onClick={this.handleSubmission}>Create Spawn</div>
+                    <div style={{...styles.buttons.buttonFollow, height:"5.9vh", marginTop:"2vmax", padding:"2vmin", cursor:"pointer", width:"3.9vmax"}} onClick={this.handleSubmission}>Create Content</div>
             <div style={{fontFamily: styles.fonts.fontBold, fontSize:"2.1vh", marginTop:"1vh", color:styles.colors.color2}}>{this.state.message}</div>
             </div>
         );

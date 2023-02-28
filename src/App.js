@@ -9,15 +9,15 @@ import Dispatch from './dispatch';
 import ComponentListInterface from './componentListNPM/componentListInterface';
 import auth from './services/auth';
 import Feed from './view/feed';
-import Logo from './pics/spawnLogo.png'
+import Logo from './pics/jesus.jpg'
 import { BrowserRouter, Route, Link, Routes } from "react-router-dom";
 import Login from './view/login';
 import Register from './view/register';
 import styleService from './services/styleService';
 import MyContent from './view/myContent';
 import Keep from './view/keep';
-import SpawnPic from './pics/spawnPic.png';
-import KeepIcon from './pics/keep.png';
+import SpawnPic from './pics/bible.png';
+import KeepIcon from './pics/bible.png';
 import PictureUploader from './pictureUploader';
 //fonts
 
@@ -47,14 +47,12 @@ export default class App extends Component {
       start: false,
       listItems:[],
       switchCase:[
-        {path:"/myContent", comp: MyContent, name: "My Content", icon:SpawnPic, switchcase:"spawn",},
-        {path:"/keep", comp:Keep, name: "My Keeps", switchcase:"keep", icon:KeepIcon},
-        {path:"/monsters", comp:Feed, name:"Monsters", feed:"true", switchcase:"monsters"},
-        {path:"/", comp:Feed, name:"Monsters", feed:true, switchcase:"monsters"},
-        {path:"/heroes", comp:Feed, name:"Heroes", feed:true, switchcase:"heroes"},
-        {path:"/maps", comp:Feed, name:"Maps", feed:true, switchcase:"maps"},
-        {path:"/worlds", comp:Feed, name:"Worlds", feed:true, switchcase:"worlds"},
-        {path:"/statblocks", comp:Feed, name:"Statblocks", feed:true, switchcase:"statblocks"},
+        {path:"/mycontent", comp: MyContent, name: "My Content", icon:SpawnPic, switchcase:"spawn",},
+        {path:"/mywall", comp:Keep, name: "My Wall", switchcase:"keep", icon:KeepIcon},
+        {path:"/quotes", comp:Feed, name:"Quotes", feed:"true", switchcase:"quotes"},
+        {path:"/quotes", comp:Feed, name:"Quotes", feed:true, switchcase:"quotes"},
+        {path:"/heroes", comp:Feed, name:"Scripture Heroes", feed:true, switchcase:"heroes"},
+        {path:"/history", comp:Feed, name:"Historical", feed:true, switchcase:"history"},
         {path:"/all", comp:Feed, name:"All", feed:true, switchcase:"all"},
         {path: "/login", comp:Login, name:"Login", feed:"login"},
         {path:"/register", comp:Register, name:"register", feed:"register"}
@@ -157,20 +155,24 @@ handleChange = (event) => {
 
     }
     debugger
-    await auth.getPics(list);
+    // await auth.getPics(list);
     let listItems = this.state.switchCase.filter(obj=> obj.feed===true).map((obj, index)=>obj.switchcase);
-    
-    let comp = list.getComponent(listItems[0],)
-    await this.setState({pic: comp, currentComponent: comp, listItems:listItems});
+    this.setState({listItems:listItems})
+    let comp = list.getComponent(listItems[0])
+    if(comp){
+    await this.setState({pic: comp, currentComponent: comp, });
     list.getOperationsFactory().cleanPrepare({update:comp});
-    
+    }
+
     let user = await auth.getCurrentUser();
     if(user){
       user = JSON.parse(user);
       let email = user.email
       await auth.getuser(user.email, list);
       user = list.getComponent('user')
-      auth.getComments(this.state.componentList, comp.getJson()._id);
+      if(comp){
+        auth.getComments(this.state.componentList, comp.getJson()._id);
+      }
       this.setState({
         user: user,
         login: true,
@@ -197,7 +199,10 @@ handleChange = (event) => {
       }]
       await list.addComponents(user, false);
       user = list.getComponent('user')
-      auth.getComments(this.state.componentList, comp.getJson()._id);
+      if(comp){
+        auth.getComments(this.state.componentList, comp.getJson()._id);
+
+      }
       this.setState({
         user: user,
         login: false,
@@ -205,7 +210,8 @@ handleChange = (event) => {
         start:true
       })
     }
-    
+  
+ 
 
     const FontFace = () => {
       return(

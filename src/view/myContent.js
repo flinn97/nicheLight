@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import SpawnPic from '../pics/spawnPic.png';
-import SpawnBack from '../pics/spawnPicBck.png';
+import SpawnPic from '../pics/bible.png';
+import SpawnBack from '../pics/bible.png';
 import TrashCan from '../pics/trash-can.png';
 import Like2 from '../pics/like_grey.png';
 import "../App.css";

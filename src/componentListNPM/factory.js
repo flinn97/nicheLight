@@ -6,16 +6,14 @@ class Factory {
 
     factory ={
         user:  User,
-        monsters:  Pic,
+        quotes:  Pic,
         heroes:  Pic,
-        statblocks:  Pic,
-        worlds: Pic,
-        maps: Pic,
-        keepmonsters:  Pic,
+        history:  Pic,
+       
+        keepquotes:  Pic,
         keepheroes:  Pic,
-        keepstatblocks:  Pic,
-        keepworlds: Pic,
-        keepmaps: Pic,
+        keephistory:  Pic,
+       
         pic: Pic,
         comment: Comment,
         follow: Follow,

@@ -139,7 +139,7 @@ export default class Nav extends Component {
 }}>
 
 {state.switchCase?.filter(obj => obj.feed === true).map((obj, index) =>
-
+<>{(state.componentList.getList(obj.switchcase).length!==0 ||state.componentList.getList(obj.switchcase)!==undefined)&&(
                  <Link to={obj.path}  style={{cursor:"pointer", display: "flex", flexDirection: "row", alignItems: "center",
 
                  marginBottom: styles.menu.marginBottom,
@@ -151,7 +151,7 @@ export default class Nav extends Component {
                          letterSpacing: styles.menu.menuSpacing,fontSize:"2vmin",
                      }}>
                    {obj.name}
-                   </div></Link>
+                   </div></Link>)}</>
 
               )}
 
