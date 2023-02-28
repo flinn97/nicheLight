@@ -36,12 +36,11 @@ export default class MyContent extends Component {
 
   render(){
     let app = this.props.app
-    let pic = [
-      ...app.state.componentList?.getList("monsters", app.state.user.getJson()._id), 
-      ...app.state.componentList?.getList("heroes", app.state.user.getJson()._id),
-    ...app.state.componentList?.getList("maps", app.state.user.getJson()._id), 
-    ...app.state.componentList?.getList("statblocks", app.state.user.getJson()._id), 
-    ...app.state.componentList?.getList("worlds", app.state.user.getJson()._id)];
+    let pic = [];
+    let l = this.props.app.state.listItems
+            for(let comp of l){
+              pic= [...pic, ...this.props.app.state.componentList?.getList(comp,  app.state.user.getJson()._id),];
+            }
     let state = app.state;
     let styles =state.styles;
     let switchcase = app.state.switchcase;

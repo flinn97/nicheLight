@@ -155,7 +155,7 @@ handleChange = (event) => {
 
     }
     debugger
-    // await auth.getPics(list);
+    await auth.getPics(list);
     let listItems = this.state.switchCase.filter(obj=> obj.feed===true).map((obj, index)=>obj.switchcase);
     this.setState({listItems:listItems})
     let comp = list.getComponent(listItems[0])
